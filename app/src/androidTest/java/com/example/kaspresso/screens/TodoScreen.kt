@@ -1,4 +1,4 @@
-package com.example.kaspresso
+package com.example.kaspresso.screens
 
 import android.view.View
 import com.agoda.kakao.check.KCheckBox
@@ -7,11 +7,14 @@ import com.agoda.kakao.recycler.KRecyclerItem
 import com.agoda.kakao.recycler.KRecyclerView
 import com.agoda.kakao.text.KButton
 import com.agoda.kakao.text.KTextView
+import com.example.kaspresso.R
 import com.example.kaspresso.TodoAdapter.TodoViewHolder
+import com.example.kaspresso.TodoFragment
+import com.example.kaspresso.base.BaseScreen
 import com.kaspersky.kaspresso.screens.KScreen
 import org.hamcrest.Matcher
 
-object TodoScreen : KScreen<TodoScreen>() {
+object TodoScreen : BaseScreen<TodoScreen>() {
     override val layoutId: Int = R.layout.fragment_todo
     override val viewClass: Class<*> = TodoFragment::class.java
 
@@ -26,7 +29,8 @@ object TodoScreen : KScreen<TodoScreen>() {
     private val rvTodo = KRecyclerView(
         builder = {
             withId(R.id.rv_todo)
-        }, itemTypeBuilder = {
+        },
+        itemTypeBuilder = {
             itemType(TodoScreen::TodoItem)
         }
     )

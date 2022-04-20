@@ -1,5 +1,15 @@
-package com.example.kaspresso
+package com.example.kaspresso.tests
 
+import com.example.kaspresso.LoginFragment
+import com.example.kaspresso.TodoFragment
+import com.example.kaspresso.base.BaseCaspressoTest
+import com.example.kaspresso.screens.CounterScreen
+import com.example.kaspresso.screens.CounterScreen.checkButtons
+import com.example.kaspresso.screens.CounterScreen.checkCounterValue
+import com.example.kaspresso.screens.CounterScreen.checkToastVisibility
+import com.example.kaspresso.screens.CounterScreen.checkTvCounter
+import com.example.kaspresso.screens.CounterScreen.decreaseCounterClick
+import com.example.kaspresso.screens.CounterScreen.increaseCounterClick
 import org.junit.Test
 
 class CounterTest : BaseCaspressoTest() {
@@ -92,13 +102,25 @@ class CounterTest : BaseCaspressoTest() {
                 CounterScreen.openTodoScreenClick()
             }
             step("Verify destination is TodoFragment") {
-                val isTodoFragment = activityTestRule.activity.supportFragmentManager.fragments.firstOrNull {
-                    it is TodoFragment
-                }
-
-                assert(isTodoFragment != null)
+                val isTodoFragment = checkFragmentIsDisplayed<TodoFragment>()
+                assert(isTodoFragment)
             }
         }
     }
 
+    @Test
+    fun checkOpenLoginScreen() {
+        run {
+            step("check buttons is displayed") {
+                CounterScreen.checkButtons()
+            }
+            step("click open login screen button") {
+                CounterScreen.openLoginScreenClick()
+            }
+            step("Verify destination is LoginFragment") {
+                val isLoginFragment = checkFragmentIsDisplayed<LoginFragment>()
+                assert(isLoginFragment)
+            }
+        }
+    }
 }

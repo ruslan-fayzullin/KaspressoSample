@@ -1,12 +1,15 @@
-package com.example.kaspresso
+package com.example.kaspresso.screens
 
 import com.agoda.kakao.common.builders.ViewBuilder
 import com.agoda.kakao.common.views.KView
 import com.agoda.kakao.text.KButton
 import com.agoda.kakao.text.KTextView
+import com.example.kaspresso.CounterFragment
+import com.example.kaspresso.R
+import com.example.kaspresso.base.BaseScreen
 import com.kaspersky.kaspresso.screens.KScreen
 
-object CounterScreen : KScreen<CounterScreen>() {
+object CounterScreen : BaseScreen<CounterScreen>() {
     override val layoutId: Int = R.layout.fragment_counter
     override val viewClass: Class<*> = CounterFragment::class.java
 
@@ -26,9 +29,8 @@ object CounterScreen : KScreen<CounterScreen>() {
         withId(R.id.btn_open_todo_screen)
     }
 
-    private fun getToast(text: String, action: ViewBuilder.() -> Unit) = KView {
-        withText(text)
-        action()
+    val btnOpenLogin = KButton {
+        withId(R.id.btn_open_login_screen)
     }
 
     fun checkToastVisibility(text: String) {
@@ -65,9 +67,15 @@ object CounterScreen : KScreen<CounterScreen>() {
         btnOpenTodo.click()
     }
 
+    fun openLoginScreenClick() {
+        btnOpenLogin.click()
+    }
+
     fun checkCounterValue(text: String) {
         tvCounter {
             hasText(text)
         }
     }
+
+    fun isDisplayed() = checkButtons()
 }

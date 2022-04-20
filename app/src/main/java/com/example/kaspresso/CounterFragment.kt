@@ -32,7 +32,15 @@ class CounterFragment : Fragment() {
             btnIncreaseCounter.setOnClickListener { increaseCounter() }
             btnDecreaseCounter.setOnClickListener { decreaseCounter() }
             btnOpenTodoScreen.setOnClickListener { openTodoList() }
+            btnOpenLoginScreen.setOnClickListener { openLoginScreen() }
         }
+    }
+
+    private fun openLoginScreen() {
+        parentFragmentManager.beginTransaction()
+            .addToBackStack(null)
+            .replace(android.R.id.content, LoginFragment.newInstance())
+            .commit()
     }
 
     private fun openTodoList() {
